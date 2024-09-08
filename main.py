@@ -20,6 +20,20 @@ xline = []
 yline = []
 zline = []
 
+x = numpy.linspace(lb_x, ub_x, 150)
+y = numpy.linspace(lb_y, ub_y, 150)
+
+X, Y = numpy.meshgrid(x, y)
+Z = f(X, Y)
+
+fig = plt.figure()
+ax2 = plt.axes(projection='3d')
+ax2.contour3D(X, Y, Z, 80, cmap='hot')
+ax2.set_xlabel('x')
+ax2.set_ylabel('y')
+ax2.set_zlabel('f')
+
+
 # Generate pseudo-random values for x and y
 for i in range(population_size):
     xline.append(generate_value(lb_x, ub_x))
@@ -35,5 +49,3 @@ axl.scatter3D(xline, yline, zline, c=zline, cmap='hot', s=7)
 axl.set_xlabel('x')
 axl.set_ylabel('y')
 axl.set_zlabel('z')
-
-plt.savefig("3d_plot.png")
